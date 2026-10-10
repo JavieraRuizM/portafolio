@@ -2,11 +2,11 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createServer } from 'vite';
 import React from 'react';
-import { renderToStaticMarkup } from 'react-dom/server';
 import { MemoryRouter } from 'react-router-dom';
+import { renderToStaticMarkup } from 'react-dom/server';
 
 test('Las categorías filtran correctamente y los enlaces de etiqueta no se anidan', async () => {
-  const server = await createServer({server:{middlewareMode:true,ws:false,hmr:false},optimizeDeps:{noDiscovery:true,include:[]},appType:'custom'});
+  const server = await createServer({server:{middlewareMode:true,ws:false,hmr:false},optimizeDeps:{noDiscovery:true,include:[]},appType:'custom',ssr:{resolve:{externalConditions:['node','module-sync']}}});
   try {
     const {default:App} = await server.ssrLoadModule('/src/App.tsx');
     const {categories,projects,categoryPath} = await server.ssrLoadModule('/src/data/projects.ts');
