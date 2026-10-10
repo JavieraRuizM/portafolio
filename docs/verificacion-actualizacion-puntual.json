@@ -1,0 +1,17 @@
+{
+  "projects": 10,
+  "accessibilityProjects": [
+    "memento",
+    "publicacion-escalas-de-confort",
+    "accessibility-subjective-thermal-comfort"
+  ],
+  "researchChange": "Solo se añadió la frase solicitada al final del último párrafo; todo el contenido previo se conserva exactamente.",
+  "cv": "Solo cambió el perfil. Cursos, años, cargos, formación y contactos idénticos.",
+  "unchangedComponents": [
+    "MediaDisplay",
+    "ProjectCard",
+    "HorizontalGallery",
+    "SiteFooter",
+    "Overlay"
+  ]
+}
