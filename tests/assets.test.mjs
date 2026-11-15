@@ -26,7 +26,7 @@ test('Todos los medios, posters y documentos referenciados existen y tienen form
 });
 test('El build es portable, incluye los medios y excluye originales y rutas del computador',async()=>{
  const index=await readFile(new URL('dist/index.html',root),'utf8');assert.match(index,/lang="es"/);assert.match(index,/\.\/assets\//);
- const files=await readdir(new URL('dist/media/',root));assert.equal(files.filter(f=>f.endsWith('.mp4')).length,6);assert.equal(files.filter(f=>f.endsWith('.pdf')).length,2);assert.ok(!files.some(f=>f.endsWith('.mov')));
+ const files=await readdir(new URL('dist/media/',root));assert.equal(files.filter(f=>f.endsWith('.mp4')).length,new Set(projects.flatMap(p=>p.media.filter(m=>m.type==='video').map(m=>m.file))).size);assert.equal(files.filter(f=>f.endsWith('.pdf')).length,2);assert.ok(!files.some(f=>f.endsWith('.mov')));
  for(const file of await readdir(new URL('dist/assets/',root))){if(!/\.(js|css)$/.test(file))continue;const data=await readFile(new URL('dist/assets/'+file,root),'utf8');assert.ok(!data.includes('/Users/'));}
  await assert.rejects(stat(new URL('dist/originales',root)));
 });
